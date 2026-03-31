@@ -1,0 +1,24 @@
+# What Each Chart Shows
+1. **Confusion Matrix**: This chart displays the classification performance of the model across three classes: `<30`, `>30`, and `NO`. It shows the true labels versus the predicted labels to illustrate where the model is making correct and incorrect predictions.
+   
+2. **Per-Class F1 Scores**: This chart represents the F1 scores for each class. The F1 score is a measure of a model's accuracy that considers both precision and recall, providing a balance between the two metrics.
+
+# Quantified Findings
+1. **Class distribution**: The `NO` class has the highest true positives with approximately **8939** instances correctly identified.
+2. **F1 Scores**: The `NO` class has an F1 score of around **0.7**, while the `>30` class scores approximately **0.6**, and the `<30` class has a very low F1 score near **0.1**.
+3. **Incorrect Predictions**: The confusion matrix shows a significant number of misclassifications: `>30` class misclassified as `NO` with **1485** predictions and `<30` misclassified as `NO` with **1262** predictions.
+
+# Class-Imbalance Impact and Error Pattern
+- There is a notable class imbalance where the `NO` class dominates the predictions, leading to a higher F1 score. The `<30` class suffers heavily from low prediction quality, with only a few correct classifications.
+- The model struggles most with the `<30` class, indicating a pattern of underestimating this category, which can affect clinical outcomes in a real-world setting.
+
+# Modelling Recommendations
+1. **Address Class Imbalance**: Use techniques like oversampling the underrepresented classes or undersampling the overrepresented one.
+2. **Feature Engineering**: Explore additional features that may help improve classification, particularly for the `<30` and `>30` classes.
+3. **Model Selection**: Experiment with different algorithms (e.g., ensemble methods) that may perform better on imbalanced datasets.
+4. **Threshold Adjustment**: Optimize classification thresholds for each class instead of using the default threshold to improve the detection of `<30` and `>30`.
+5. **Cross-Validation**: Apply stratified cross-validation to ensure that all classes are well represented in training and validation sets.
+
+# Expected Metric Impact
+- By addressing class imbalance, the F1 score for the `<30` and `>30` classes should improve, resulting in a more balanced performance across all classes.
+- Enhanced feature engineering and model selection can lead to better classification accuracy, reducing the false negatives in the `<30` and `>30` classes, thus improving recall and overall effectiveness of the model.

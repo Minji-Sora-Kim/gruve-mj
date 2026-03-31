@@ -1,0 +1,29 @@
+{
+  "model_path": "ag_models",
+  "input_path": "/tmp/explain_24rows.csv",
+  "rows": 24,
+  "representative_ids": [
+    7,
+    0,
+    16,
+    2,
+    18
+  ],
+  "shap_available": true,
+  "shap_error": "",
+  "feature_transform_applied": true,
+  "expected_feature_count": 94,
+  "missing_required_count_before_transform": 52,
+  "shap_local_records": 2256,
+  "shap_rows_explained": 24,
+  "openai_enabled": true,
+  "llm_model": "gpt-4o-mini",
+  "llm_rewrite_generated": true,
+  "llm_error": "",
+  "eda_chart_paths": [
+    "outputs/training/confusion_matrix_heatmap.png",
+    "outputs/training/classwise_f1_bar.png"
+  ],
+  "vlm_summary_generated": true,
+  "vlm_error": ""
+}

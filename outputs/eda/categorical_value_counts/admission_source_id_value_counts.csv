@@ -1,0 +1,18 @@
+admission_source_id,count,percentage
+Emergency Room,43678,56.47
+Physician Referral,22474,29.06
+Unknown,5156,6.67
+Transfer from a hospital,2409,3.11
+Transfer from another health care facility,1718,2.22
+Clinic Referral,858,1.11
+Transfer from a Skilled Nursing Facility (SNF),644,0.83
+HMO Referral,148,0.19
+Not Mapped,121,0.16
+Not Available,100,0.13
+Court/Law Enforcement,13,0.02
+Transfer from hospital inpt/same fac reslt in a sep claim,9,0.01
+Transfer from critial access hospital,7,0.01
+Extramural Birth,2,0.0
+Normal Delivery,2,0.0
+Sick Baby,1,0.0
+Transfer from Ambulatory Surgery Center,1,0.0

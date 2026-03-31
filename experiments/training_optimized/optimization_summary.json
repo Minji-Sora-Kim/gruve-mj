@@ -1,0 +1,39 @@
+{
+  "selected_strategy": "oversample",
+  "selected_oversample_ratio": 0.2,
+  "selected_weight_alpha": 0.0,
+  "selected_weight_map": {},
+  "selected_bias_map": {
+    "<30": 3.0,
+    ">30": 1.1,
+    "NO": 0.9
+  },
+  "baseline_f1_macro_internal": 0.4840145864612686,
+  "f1_floor_used": 0.4790145864612686,
+  "accuracy": 0.5814542821679768,
+  "f1_macro": 0.4939141338373294,
+  "n_train_original": 77341,
+  "n_train_final_strategy": 77341,
+  "n_test": 19336,
+  "model_path": "/Users/minji.kim12/Desktop/gruve/gruve-mj/ag_models_optimized_v2",
+  "leaderboard_path": "/Users/minji.kim12/Desktop/gruve/gruve-mj/leaderboard_optimized_v2.csv",
+  "oversample_ratio_search_grid": [
+    0.1,
+    0.2,
+    0.35
+  ],
+  "weight_alpha_search_grid": [
+    0.2,
+    0.35,
+    0.5
+  ],
+  "lt30_objective_weight": 0.1,
+  "included_model_types": [
+    "GBM",
+    "CAT",
+    "XGB",
+    "RF",
+    "XT"
+  ],
+  "top_mi_numeric_used": []
+}

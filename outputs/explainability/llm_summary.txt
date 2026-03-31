@@ -1,0 +1,57 @@
+# Multiclass Medical Readmission Model Explainability Report
+
+## Executive Summary
+- The model has a **low accuracy** of 37.5% and a **Macro F1 score** of 0.1818 based on 24 evaluated rows.
+- All predictions resulted in a class label of **NO**, indicating a tendency to underpredict readmissions.
+- Key features influencing the model include **encounter_id**, **discharge_disposition_id**, and **patient_nbr**, suggesting that patient history and discharge details are critical in the model's decision-making.
+
+## Global Drivers
+The top features influencing the model are:
+1. **encounter_id**: Indicates unique patient visits, emphasizing the importance of individual patient history.
+2. **discharge_disposition_id**: Reflects the setting in which the patient is discharged, suggesting its relevance in assessing readmission risk.
+3. **patient_nbr**: Represents the patient’s identification number, indicating that patient-specific data plays a crucial role.
+4. **total_utilization** and **emergency_inpatient_ratio**: Show the overall healthcare resource usage by the patient, implying that higher utilization correlates with readmission risk.
+5. **diabetesMed**: Suggests medication management as a factor in patient outcomes.
+
+## Local Case Explanations
+1. **Sample 7**
+   - **Prediction**: NO, **Confidence**: 0.721, **True Label**: NO
+   - **Top Positive**: discharge_disposition_id (+0.1451), encounter_id (+0.0240), diabetesMed (+0.0058)
+   - **Top Negative**: number_inpatient (-0.0093), patient_nbr (-0.0085), total_utilization (-0.0077)
+   - **Caution**: This should support clinical decisions, not replace them.
+
+2. **Sample 0**
+   - **Prediction**: NO, **Confidence**: 0.626, **True Label**: >30
+   - **Top Positive**: encounter_id (+0.0718), emergency_inpatient_ratio (+0.0039), total_utilization (+0.0039)
+   - **Top Negative**: discharge_disposition_id (-0.0200), patient_nbr (-0.0112), diabetesMed (-0.0036)
+   - **Caution**: This should support clinical decisions, not replace them.
+
+3. **Sample 16**
+   - **Prediction**: NO, **Confidence**: 0.609, **True Label**: <30
+   - **Top Positive**: patient_nbr (+0.0252), num_medications (+0.0073), med_lab_ratio (+0.0064)
+   - **Top Negative**: encounter_id (-0.0359), discharge_disposition_id (-0.0183), age_mid (-0.0043)
+   - **Caution**: This should support clinical decisions, not replace them.
+
+4. **Sample 2**
+   - **Prediction**: NO, **Confidence**: 0.597, **True Label**: >30
+   - **Top Positive**: admission_source_id (+0.0231), patient_nbr (+0.0115), diabetesMed (+0.0105)
+   - **Top Negative**: weight_observed (-0.0103), weight_missing_flag (-0.0095), discharge_disposition_id (-0.0091)
+   - **Caution**: This should support clinical decisions, not replace them.
+
+5. **Sample 18**
+   - **Prediction**: NO, **Confidence**: 0.527, **True Label**: <30
+   - **Top Positive**: patient_nbr (+0.0198), metformin (+0.0084), total_utilization (+0.0055)
+   - **Top Negative**: encounter_id (-0.0479), discharge_disposition_id (-0.0188), diag_2 (-0.0119)
+   - **Caution**: This should support clinical decisions, not replace them.
+
+## Reliability & Risks
+- **Imbalance Risk**: The model predicts only the "NO" class, indicating an imbalance issue that could affect its reliability.
+- **Uncertainty**: The low accuracy and high confidence in a single class suggest potential overfitting. This uncertainty needs addressing for better predictions.
+- **Potential Leakage Checks**: Evaluate features for possible data leakage to ensure they don’t include future information that could bias predictions.
+
+## Action Plan
+1. **Address Class Imbalance**: Implement techniques like oversampling, undersampling, or synthetic data generation to balance prediction classes.
+2. **Enhance Feature Selection**: Review features to eliminate any that may lead to data leakage or are not contributing positively to predictions.
+3. **Model Retraining**: Experiment with different algorithms or model parameters to improve accuracy and evaluation metrics.
+4. **Increase Training Data**: Collect more diverse patient data to enhance model learning and generalization.
+5. **Regular Monitoring**: Establish ongoing monitoring of model performance to detect shifts in data distribution and recalibrate as necessary.

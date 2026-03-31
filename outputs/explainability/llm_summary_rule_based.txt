@@ -1,0 +1,11 @@
+Prediction / Confidence / Top factors / Caution
+
+Global summary:
+- Most influential features: encounter_id, discharge_disposition_id, patient_nbr, total_utilization, diag_2, emergency_inpatient_ratio, diabetesMed, admission_source_id.
+
+Local explanation cards:
+- Sample 7: Prediction=NO, Confidence=0.721. TrueLabel=NO. Top factors: discharge_disposition_id, encounter_id, number_inpatient, patient_nbr. Caution: treat this as decision support, not standalone clinical advice.
+- Sample 0: Prediction=NO, Confidence=0.626. TrueLabel=>30. Top factors: encounter_id, discharge_disposition_id, patient_nbr, emergency_inpatient_ratio. Caution: treat this as decision support, not standalone clinical advice.
+- Sample 16: Prediction=NO, Confidence=0.609. TrueLabel=<30. Top factors: encounter_id, patient_nbr, discharge_disposition_id, num_medications. Caution: treat this as decision support, not standalone clinical advice.
+- Sample 2: Prediction=NO, Confidence=0.597. TrueLabel=>30. Top factors: admission_source_id, patient_nbr, diabetesMed, weight_observed. Caution: treat this as decision support, not standalone clinical advice.
+- Sample 18: Prediction=NO, Confidence=0.527. TrueLabel=<30. Top factors: encounter_id, patient_nbr, discharge_disposition_id, diag_2. Caution: treat this as decision support, not standalone clinical advice.

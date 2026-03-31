@@ -1,0 +1,4 @@
+method,sample_size,dimension_1_variance,dimension_2_variance,note
+PCA,5000,15.474348251914023,2.5954936026179762,Explained variance ratio sum = 0.3098
+t-SNE,5000,1025.4273681640625,852.06982421875,"Optimised for local neighbourhood structure, not global variance"
+UMAP,5000,12.826167106628418,24.748537063598633,Often preserves local structure efficiently and scales well

@@ -1,0 +1,9 @@
+admission_type_id,count,percentage
+Emergency,41044,53.07
+Elective,14303,18.49
+Urgent,14034,18.15
+Unknown,4028,5.21
+Not Available,3666,4.74
+Not Mapped,247,0.32
+Trauma Center,13,0.02
+Newborn,6,0.01

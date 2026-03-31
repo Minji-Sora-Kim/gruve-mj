@@ -1,0 +1,27 @@
+{
+  "best_model": "WeightedEnsemble_L4",
+  "eval_metric": "f1_macro",
+  "accuracy": 0.6065370293752586,
+  "f1_macro": 0.4007175069550902,
+  "macro_recall": 0.42443958531316883,
+  "lt30_recall": 0.004170528266913809,
+  "n_train_original": 77341,
+  "n_train_oversampled_weighted": 112578,
+  "n_test": 19336,
+  "model_path": "/Users/minji.kim12/Desktop/gruve/gruve-mj/ag_models",
+  "leaderboard_path": "/Users/minji.kim12/Desktop/gruve/gruve-mj/leaderboard.csv",
+  "advanced_features": [
+    "missing_indicators",
+    "very_high_missing_observed_flags",
+    "rare_category_grouping",
+    "icd_group_features",
+    "age_weight_midpoints",
+    "utilization_features",
+    "medication_summary_features",
+    "pca_components",
+    "kmeans_cluster_label",
+    "minority_oversampling",
+    "sample_weight_cost_sensitive_learning",
+    "feature_importance_export"
+  ]
+}

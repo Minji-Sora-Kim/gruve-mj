@@ -1,0 +1,7 @@
+{
+  "best_model": "WeightedEnsemble_L2",
+  "eval_metric": "f1_macro",
+  "accuracy": 0.6219486967314853,
+  "f1_macro": 0.4501478929387395,
+  "n_test": 19336
+}

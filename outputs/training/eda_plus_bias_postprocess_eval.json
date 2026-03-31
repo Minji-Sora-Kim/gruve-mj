@@ -1,0 +1,27 @@
+{
+  "model": "NeuralNetTorch_r79_BAG_L1",
+  "raw_leaderboard_score_test": 0.4723624397979081,
+  "base_test_metrics_from_proba_argmax": {
+    "accuracy": 0.556371534960695,
+    "f1_macro": 0.4699801167006301,
+    "macro_recall": 0.47446163156039445,
+    "lt30_recall": 0.27664504170528265
+  },
+  "calibration_metrics_best_bias": {
+    "accuracy": 0.6697265498739414,
+    "f1_macro": 0.6668121355921519,
+    "macro_recall": 0.6982490035002172,
+    "lt30_recall": 0.7867902665121669
+  },
+  "selected_bias": {
+    "<30": 1.0,
+    ">30": 1.1,
+    "NO": 0.95
+  },
+  "biased_test_metrics": {
+    "accuracy": 0.5508378154737278,
+    "f1_macro": 0.47009644734913886,
+    "macro_recall": 0.4759127183957899,
+    "lt30_recall": 0.2618164967562558
+  }
+}

@@ -1,0 +1,27 @@
+discharge_disposition_id,count,percentage
+Discharged to home,45829,59.26
+Discharged/transferred to SNF,10560,13.65
+Discharged/transferred to home with home health service,9788,12.66
+Unknown,2810,3.63
+Discharged/transferred to another short term hospital,1606,2.08
+Discharged/transferred to another rehab fac including rehab units of a hospital .,1526,1.97
+Expired,1263,1.63
+Discharged/transferred to another type of inpatient care institution,900,1.16
+Not Mapped,746,0.96
+Discharged/transferred to ICF,601,0.78
+Left AMA,492,0.64
+Discharged/transferred to a long term care hospital.,323,0.42
+Hospice / home,306,0.4
+Hospice / medical facility,274,0.35
+Discharged/transferred/referred to a psychiatric hospital of psychiatric distinct part unit of a hospital,96,0.12
+Discharged/transferred to home under care of Home IV provider,78,0.1
+Discharged/transferred within this institution to Medicare approved swing bed,49,0.06
+Discharged/transferred to a nursing facility certified under Medicaid but not certified under Medicare.,34,0.04
+Admitted as an inpatient to this hospital,18,0.02
+Discharged/transferred/referred to this institution for outpatient services,11,0.01
+Discharged/transferred/referred another institution for outpatient services,10,0.01
+Neonate discharged to another hospital for neonatal aftercare,6,0.01
+"Expired at home. Medicaid only, hospice.",5,0.01
+Discharged/transferred to a federal health care facility.,5,0.01
+Still patient or expected to return for outpatient services,3,0.0
+"Expired in a medical facility. Medicaid only, hospice.",2,0.0

@@ -1,0 +1,12 @@
+ag_models_baseline/
+ag_models_optimized/
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+.DS_Store
+.mplconfig/
+app/.env
+app/Gruve-MJ/backend/models/ag_models/models/
+ag_models/models_ref
+experiments/training_optimized/strategy_models
+ag_models/models

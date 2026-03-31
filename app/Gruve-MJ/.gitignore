@@ -1,0 +1,6 @@
+outputs/
+
+# Keep model binaries out by default, but allow Space runtime model directory.
+backend/models/*
+!backend/models/ag_models/
+!backend/models/ag_models/**
