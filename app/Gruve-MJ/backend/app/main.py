@@ -19,9 +19,11 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 
-WORKSPACE_ROOT = Path(os.getenv("WORKSPACE_ROOT", "/workspace"))
+WORKSPACE_ROOT = Path(os.getenv("WORKSPACE_ROOT", "/app/context"))
 DEFAULT_MODEL_CANDIDATES = [
     WORKSPACE_ROOT / "ag_models",
+    WORKSPACE_ROOT / "backend" / "models" / "ag_models",
+    WORKSPACE_ROOT / "models" / "ag_models",
     WORKSPACE_ROOT / "experiments" / "ag_models_optimized",
     WORKSPACE_ROOT / "experiments" / "ag_models_baseline",
 ]
@@ -78,6 +80,10 @@ def _resolve_model_path() -> Path:
         model_path = Path(env_path)
         if model_path.exists():
             return model_path
+        # Allow relative MODEL_PATH values resolved from WORKSPACE_ROOT.
+        rel_model_path = WORKSPACE_ROOT / env_path
+        if rel_model_path.exists():
+            return rel_model_path
     for candidate in DEFAULT_MODEL_CANDIDATES:
         if candidate.exists():
             return candidate
@@ -85,6 +91,22 @@ def _resolve_model_path() -> Path:
         "No model directory found. Set MODEL_PATH or provide one of: "
         + ", ".join(str(p) for p in DEFAULT_MODEL_CANDIDATES)
     )
+
+
+def _require_runtime() -> ModelRuntime:
+    """Return loaded runtime or raise a 503 with actionable setup guidance."""
+    runtime = getattr(app.state, "runtime", None)
+    if runtime is None:
+        runtime_error = getattr(app.state, "runtime_error", "Runtime is not initialized.")
+        raise HTTPException(
+            status_code=503,
+            detail=(
+                f"{runtime_error} "
+                "Upload model artifacts under /app/context/backend/models/ag_models "
+                "or set MODEL_PATH to a valid predictor directory."
+            ),
+        )
+    return runtime
 
 
 def _clean_dataframe(df: pd.DataFrame) -> pd.DataFrame:
@@ -352,16 +374,31 @@ app.add_middleware(
 @app.on_event("startup")
 def on_startup() -> None:
     """Initialize predictor runtime once during app startup."""
-    app.state.runtime = _load_runtime()
+    app.state.runtime = None
+    app.state.runtime_error = ""
+    try:
+        app.state.runtime = _load_runtime()
+    except Exception as exc:
+        # Keep app alive so health endpoint explains what is missing instead of
+        # causing container launch timeout.
+        app.state.runtime_error = str(exc)
     app.state.representative_row_ids = set()
 
 
 @app.get("/health")
 def health() -> dict[str, Any]:
     """Health check endpoint with active model metadata."""
-    runtime: ModelRuntime = app.state.runtime
+    runtime: ModelRuntime | None = getattr(app.state, "runtime", None)
+    if runtime is None:
+        return {
+            "status": "degraded",
+            "ready": False,
+            "runtime_error": getattr(app.state, "runtime_error", "Runtime is not initialized."),
+            "model_candidates": [str(p) for p in DEFAULT_MODEL_CANDIDATES],
+        }
     return {
         "status": "ok",
+        "ready": True,
         "model_path": str(runtime.model_path),
         "feature_count": len(runtime.feature_columns),
     }
@@ -376,7 +413,7 @@ async def predict_csv(
     max_rows: int = Form(default=300),
 ) -> dict[str, Any]:
     """Run inference for uploaded CSV and attach row-level SHAP summaries."""
-    runtime: ModelRuntime = app.state.runtime
+    runtime = _require_runtime()
     if not file.filename.lower().endswith(".csv"):
         raise HTTPException(status_code=400, detail="Only CSV files are supported.")
 
@@ -468,7 +505,7 @@ async def predict_csv(
 @app.post("/api/explain-row")
 def explain_row(req: ExplainRowRequest) -> dict[str, Any]:
     """Generate local SHAP + LLM narrative for representative rows only."""
-    runtime: ModelRuntime = app.state.runtime
+    runtime = _require_runtime()
     rep_ids: set[int] = set(getattr(app.state, "representative_row_ids", set()))
     if req.row_id is None:
         raise HTTPException(status_code=400, detail="row_id is required for representative-row validation.")
