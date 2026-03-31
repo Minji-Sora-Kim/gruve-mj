@@ -1,5 +1,15 @@
 # Gruve-MJ: Diabetic Readmission Classification (AutoGluon + Explainability + App)
 
+## Model Artifact Download (Large Files)
+Due to repository upload size constraints, the full model directory `ag_models/models` can be downloaded from:
+
+- https://drive.google.com/drive/folders/1_CDHzAwUJq9MCvvvmIz-2hH7CjXrveJO?usp=sharing
+
+After download, place it under:
+- `ag_models/models`
+
+Then `./run.sh` and `src/eda_infer.py` will work with the same final model lineage.
+
 ## Grader Quick Start (Single Command)
 First-time setup is required once (uv environment + dependencies):
 
@@ -147,16 +157,6 @@ Current final lineage:
 - training script: `src/eda_train.py`
 - model artifacts: `ag_models/`
 - leaderboard: `leaderboard.csv`
-
-## Model Artifact Download (Large Files)
-Due to repository upload size constraints, the full model directory `ag_models/models` can be downloaded from:
-
-- https://drive.google.com/drive/folders/1_CDHzAwUJq9MCvvvmIz-2hH7CjXrveJO?usp=sharing
-
-After download, place it under:
-- `ag_models/models`
-
-Then `./run.sh` and `src/eda_infer.py` will work with the same final model lineage.
 
 ## EDA-to-Modeling Analysis Summary
 Key modeling decisions derived from EDA:
